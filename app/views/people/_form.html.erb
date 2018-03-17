@@ -1,0 +1,13 @@
+<%= form_for @person do |person_form| %>
+  <p>
+    <%= render partial: "fields", locals: { f: person_form } %>
+  </p>
+  <% if @person.new_record? %>
+  <p>Save the person to enable setting children and parents.</p>
+  <% end %>
+  <h3>Children</h3>
+  <%= render partial: "edge/children/index" %>
+  <h3>Parents</h3>
+  <%= render partial: "edge/parents/index" %>
+  <p><%= person_form.submit %></p>
+<% end %>

@@ -1,0 +1,2 @@
+var id = 'ul.js-<%= partial_path -%>';
+$(id).replaceWith('<%= j(render(partial: "edge/#{partial_path}/index", formats: [:html])) %>');
