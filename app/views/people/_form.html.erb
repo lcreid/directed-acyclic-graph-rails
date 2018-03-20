@@ -9,9 +9,7 @@
     <% relatives = @person.and_ancestors %>
     <%= person_form.collection_check_boxes(:child_ids, Person.all, :id, :name) do |box| %>
       <li>
-        <%= box.check_box(
-                  disabled: relatives.include?(box.object) || @person.new_record?,
-                  ).concat(box.label) %>
+        <%= box.check_box(disabled: relatives.include?(box.object)).concat(box.label) %>
       </li>
     <% end %>
   </ul>
@@ -20,11 +18,9 @@
     <% relatives = @person.and_descendants %>
     <%= person_form.collection_check_boxes(:parent_ids, Person.all, :id, :name) do |box| %>
       <li>
-        <%= box.check_box(
-                  disabled: relatives.include?(box.object) || @person.new_record?,
-                  ).concat(box.label) %>
+        <%= box.check_box(disabled: relatives.include?(box.object)).concat(box.label) %>
       </li>
     <% end %>
   </ul>
-  <p><%= link_to "Done", people_path %></p>
+  <p><%= link_to "Done", people_path %> | <%= link_to "Reset", people_path %></p>
 <% end %>
