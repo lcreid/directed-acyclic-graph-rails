@@ -1,8 +1,0 @@
-<%# When you're rendering from parents index, you render the parent. %>
-<%= render partial: "edge/index",
-           locals: {
-             css_class: "js-parents",
-             method: :parent_ids,
-             post_path: @person.persisted? ? parents_path(@person.id) : "#",
-             relatives: @person.and_descendants
-           } %>
