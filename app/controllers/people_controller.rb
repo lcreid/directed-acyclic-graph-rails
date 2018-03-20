@@ -1,4 +1,13 @@
 class PeopleController < ApplicationController
+  def destroy
+    @person = Person.find(params[:id])
+    if @person.destroy
+      redirect_to people_path
+    else
+      render :edit
+    end
+  end
+
   def index
     @people = Person.all
   end

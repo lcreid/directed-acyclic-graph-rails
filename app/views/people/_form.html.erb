@@ -22,5 +22,14 @@
       </li>
     <% end %>
   </ul>
-  <p><%= link_to "Done", people_path %> | <%= link_to "Reset", people_path %></p>
+  <p>
+    <%= link_to "Done", people_path %>
+    | <%= link_to "Reset", people_path %>
+    <% if @person.persisted? %>
+    | <%= link_to "Delete",
+                  person_path(@person),
+                  method: :delete,
+                  data: { confirm: "This can't be undone." } %>
+    <% end %>
+  </p>
 <% end %>
