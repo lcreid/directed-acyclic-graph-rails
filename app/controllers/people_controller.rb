@@ -20,7 +20,7 @@ class PeopleController < ApplicationController
     # puts pp(person_params.as_json)
     @person = Person.new(person_params)
     if @person.save(person_params)
-      redirect_to person_path(@person)
+      redirect_to edit_person_path(@person)
     else
       render :new
     end
@@ -30,7 +30,7 @@ class PeopleController < ApplicationController
     # puts pp(person_params.as_json)
     @person = Person.find(params[:id])
     if @person.update(person_params)
-      redirect_to person_path(@person)
+      redirect_to edit_person_path(@person)
     else
       render :edit
     end

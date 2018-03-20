@@ -1,12 +1,30 @@
-<%= form_for @person do |person_form| %>
+<%= form_for @person, remote: true, html: { class: "js-submit-on-change" } do |person_form| %>
   <p>
     <%= person_form.label :name %>
     <%= person_form.text_field :name %>
     <%= person_form.hidden_field :id %>
   </p>
   <h3>Children</h3>
-  <%= render partial: "edge/children/index" %>
+  <ul class="js-children">
+    <% relatives = @person.and_ancestors %>
+    <%= person_form.collection_check_boxes(:child_ids, Person.all, :id, :name) do |box| %>
+      <li>
+        <%= box.check_box(
+                  disabled: relatives.include?(box.object) || @person.new_record?,
+                  ).concat(box.label) %>
+      </li>
+    <% end %>
+  </ul>
   <h3>Parents</h3>
-  <%= render partial: "edge/parents/index" %>
-  <p><%= person_form.submit %></p>
+  <ul class="js-parents">
+    <% relatives = @person.and_descendants %>
+    <%= person_form.collection_check_boxes(:parent_ids, Person.all, :id, :name) do |box| %>
+      <li>
+        <%= box.check_box(
+                  disabled: relatives.include?(box.object) || @person.new_record?,
+                  ).concat(box.label) %>
+      </li>
+    <% end %>
+  </ul>
+  <p><%= link_to "Done", people_path %></p>
 <% end %>
