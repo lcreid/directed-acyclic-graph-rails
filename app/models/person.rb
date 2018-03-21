@@ -1,6 +1,8 @@
 class Person < ApplicationRecord
   include Dag
 
+  validates :name, presence: true
+
   def address_types
     address_people.map(&:address_type).uniq
   end
