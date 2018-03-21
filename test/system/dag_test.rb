@@ -14,14 +14,14 @@ class DagTest < ApplicationSystemTestCase
       @all.reject { |p| p == @person }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
 
     within "ul.js-parents" do
       @all.reject { |p| p == @person }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
   end
 
@@ -35,7 +35,7 @@ class DagTest < ApplicationSystemTestCase
       @all.reject { |p| [@person, @child].include?(p) }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
       assert_checked_field @child.name
     end
 
@@ -45,7 +45,7 @@ class DagTest < ApplicationSystemTestCase
           @child, @grandchild, @greatgrandchild
         ].include?(p))
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
   end
 
@@ -59,7 +59,7 @@ class DagTest < ApplicationSystemTestCase
       @all.reject { |p| [@person, @parent].include?(p) }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
       assert_checked_field @parent.name
     end
 
@@ -69,7 +69,7 @@ class DagTest < ApplicationSystemTestCase
           @parent, @grandparent, @greatgrandparent
         ].include?(p))
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
   end
 
@@ -85,7 +85,7 @@ class DagTest < ApplicationSystemTestCase
       @all.reject { |p| p == @person }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
   end
 
@@ -101,7 +101,7 @@ class DagTest < ApplicationSystemTestCase
       @all.reject { |p| p == @person }.each do |p|
         assert_unchecked_field(p.name)
       end
-      assert_unchecked_field(@person.name, disabled: true)
+      assert_no_field(@person.name)
     end
   end
 end

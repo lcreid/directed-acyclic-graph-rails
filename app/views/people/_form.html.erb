@@ -9,8 +9,8 @@
   </p>
   <h3>Children</h3>
   <ul class="js-children">
-    <% relatives = @person.and_ancestors %>
-    <%= person_form.collection_check_boxes(:child_ids, Person.all, :id, :name) do |box| %>
+    <% relatives = @person.ancestors %>
+    <%= person_form.collection_check_boxes(:child_ids, Person.all_except(@person), :id, :name) do |box| %>
       <li>
         <%= box.check_box(disabled: relatives.include?(box.object)).concat(box.label) %>
       </li>
@@ -18,8 +18,8 @@
   </ul>
   <h3>Parents</h3>
   <ul class="js-parents">
-    <% relatives = @person.and_descendants %>
-    <%= person_form.collection_check_boxes(:parent_ids, Person.all, :id, :name) do |box| %>
+    <% relatives = @person.descendants %>
+    <%= person_form.collection_check_boxes(:parent_ids, Person.all_except(@person), :id, :name) do |box| %>
       <li>
         <%= box.check_box(disabled: relatives.include?(box.object)).concat(box.label) %>
       </li>
