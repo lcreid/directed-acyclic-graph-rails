@@ -1,5 +1,5 @@
 <ul class="<%= css_class -%>">
-  <%= collection_check_boxes(:person, method, Person.all, :id, :name) do |box| %>
+  <%= collection_check_boxes(:person, method, Person.all_except(@person), :id, :name) do |box| %>
     <li>
       <%= box.check_box(
                 disabled: relatives.include?(box.object) || @person.new_record?,

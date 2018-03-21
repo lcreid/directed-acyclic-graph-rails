@@ -4,5 +4,5 @@
              css_class: "js-children",
              method: :child_ids,
              post_path: @person.persisted? ? children_path(@person.id) : "#",
-             relatives: @person.and_ancestors
+             relatives: @person.ancestors
            } %>
