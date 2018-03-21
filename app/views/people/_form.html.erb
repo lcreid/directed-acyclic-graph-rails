@@ -1,9 +1,15 @@
+<% @person.errors.full_messages.each do |msg| %>
+<p><%= msg %></p>
+<% end %>
 <%= form_for @person do |person_form| %>
   <p>
     <%= person_form.label :name %>
     <%= person_form.text_field :name %>
     <%= person_form.hidden_field :id %>
   </p>
+  <% if @person.new_record? %>
+  <p>Save the person to enable setting children and parents.</p>
+  <% end %>
   <h3>Children</h3>
   <%= render partial: "edge/children/index" %>
   <h3>Parents</h3>
